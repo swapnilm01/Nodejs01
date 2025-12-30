@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs'   // this must match the NodeJS name you saved in Jenkins
+        nodejs 'nodejs-ci-cd'   // this must match the NodeJS name you saved in Jenkins
     }
 
     stages {
