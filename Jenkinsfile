@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs-ci-cd'
+        nodejs 'nodejs-pipeline'
     }
 
     stages {
