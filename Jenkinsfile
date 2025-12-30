@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   tools {
-    nodejs 'nodejs'
+    nodejs 'nodejs-ci-cd'
   }
   stages {
     stage('Clone Repo'){
