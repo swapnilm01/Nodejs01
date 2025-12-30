@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/ArpithaShetty15/nodejs-devops-app.git'
+                    url: 'https://github.com/swapnilm01/Nodejs01.git'
             }
         }
 
