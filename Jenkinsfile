@@ -1,28 +1,43 @@
 pipeline {
-  agent any 
-  tools {
-    nodejs 'nodejs-ci-cd'
-  }
-  stages {
-    stage('Clone Repo'){
-      steps {
-        git 'https://github.com/swapnilm01/Repo.git'
-      }
+    agent any
+
+    tools {
+        nodejs 'nodejs'   // this must match the NodeJS name you saved in Jenkins
     }
-    stage('Test') {
-      steps {
-          sh 'npm test || true'
-      }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/ArpithaShetty15/nodejs-devops-app.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'No tests defined'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build step completed'
+            }
+        }
     }
-    stage('Deploy') {
-      steps {
-        sh '''
-        npm install -g pm2
-        npm2 stop nodeapp || true
-        pm2 start npm --name
-        nodeapp -- start
-                       '''
-      }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully'
+        }
+        failure {
+            echo 'Pipeline failed'
+        }
     }
-  }
 }
