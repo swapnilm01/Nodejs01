@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs-ci-cd'   // this must match the NodeJS name you saved in Jenkins
+        nodejs 'nodejs'
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
@@ -25,9 +26,14 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Deploy') {
             steps {
-                echo 'Build step completed'
+                sh '''
+                pm2 stop nodejs-app || true
+                pm2 delete nodejs-app || true
+                pm2 start npm --name nodejs-app -- start
+                pm2 save
+                '''
             }
         }
     }
